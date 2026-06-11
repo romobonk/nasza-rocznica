@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nasza 17. Rocznica Ślubu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FAFAF7;
+      --ink: #1A1A18;
+      --warm-mid: #6B6B60;
+      --accent-gold: #C8A96E;
+      --accent-light: #E8D5B0;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .diamond {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background: var(--accent-gold);
+      transform: rotate(45deg);
+      opacity: 0.6;
+    }
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+      opacity: 0.5;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+      opacity: 0.4;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 2rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 0.3em;
+    }
+    .hero-title em { font-style: italic; color: var(--accent-gold); }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--warm-mid);
+      margin-top: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .hero-date {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .letter-section {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .letter-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      line-height: 2;
+      color: #4A4A42;
+      text-align: left;
+    }
+    .letter-heart {
+      font-size: 1.4rem;
+      color: var(--accent-gold);
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      padding: 1rem 2rem;
+    }
+    .divider-line {
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, #CCCCBB);
+    }
+    .divider-line.right { background: linear-gradient(90deg, #CCCCBB, transparent); }
+    .plan-header {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+    }
+    .plan-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+    }
+    .plan-header p {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-top: 0.5rem;
+    }
+    .day-label {
+      text-align: center;
+      padding: 4rem 2rem 1rem;
+    }
+    .day-label span {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      border-bottom: 1px solid #DDDDCC;
+      padding-bottom: 0.5rem;
+    }
+    .stop {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .stop.reverse { direction: rtl; }
+    .stop.reverse > * { direction: ltr; }
+    .stop-image {
+      aspect-ratio: 4/3;
+      background: #EEEEEA;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .stop-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .stop-image-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+    .stop-image-placeholder p {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #AAAAAA;
+    }
+    .stop-time {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 0.6rem;
+    }
+    .stop-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .stop-location {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 1rem;
+    }
+    .stop-desc {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: #4A4A42;
+    }
+    .return-section {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .return-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .return-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      margin-bottom: 0.5rem;
+    }
+    .return-header p {
+      font-size: 0.85rem;
+      color: var(--warm-mid);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    .return-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .return-card {
+      border: 1px solid #E8E8E0;
+      border-radius: 3px;
+      padding: 1.8rem;
+      background: white;
+    }
+    .return-card-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 0.6rem;
+    }
+    .return-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+    }
+    .return-card .location {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 0.8rem;
+    }
+    .return-card p { font-size: 0.85rem; line-height: 1.7; color: #4A4A42; }
+    .closing {
+      text-align: center;
+      padding: 6rem 2rem 5rem;
+      position: relative;
+    }
+    .closing::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
+      opacity: 0.5;
+    }
+    .closing::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+      opacity: 0.4;
+    }
+    .closing-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 300;
+      color: var(--warm-mid);
+      margin-bottom: 1rem;
+    }
+    .closing-sig {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #AAAAAA;
+    }
+    @media (max-width: 640px) {
+      .stop, .stop.reverse { grid-template-columns: 1fr; direction: ltr; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <p class="hero-eyebrow">13 – 14 czerwca 2026</p>
+  <h1 class="hero-title">Nasza<br><em>17. Rocznica</em><br>Ślubu</h1>
+  <p class="hero-sub">Dwa dni tylko dla nas — Praga</p>
+  <div class="hero-date">
+    <span class="diamond"></span>
+    <span>Ewa &amp; Tomasz Bąk</span>
+    <span class="diamond"></span>
+  </div>
+</section>
+
+<section class="letter-section">
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="diamond"></span>
+    <div class="divider-line right"></div>
+  </div>
+  <p class="letter-text">
+    Jak już się mnie napatrzyłaś przez te 17 sekund, a może… pozwól, że zdradzę Ci pewną tajemnicę skrzętnie ukrywaną od dwóch tygodni. Taką, co ewoluowała każdego dnia i każdego dnia była coraz piękniejszą bajką.<br><br>
+    Zapraszam Cię do tej przygody… Przeżyjmy ją razem, w pełnej obecności, sami dla siebie. A może to się stanie naszym corocznym rytuałem. 🙂<br><br>
+    Kocham Cię bardzo. <span class="letter-heart">❤</span>
+  </p>
+</section>
+
+<section class="plan-header">
+  <h2>Plan naszego weekendu</h2>
+  <p>Każde miejsce wybrane z myślą o Tobie… o Nas</p>
+</section>
+
+<div class="day-label"><span>Sobota · 13 czerwca</span></div>
+
+<article class="stop">
+  <div class="stop-image">
+    <img src="Restauracja_Cech_w_Kudowie-Zdroj.jpg" alt="Restauracja Cech. Kudowa-Zdrój">
+  </div>
+  <div class="stop-content">
+    <p class="stop-time">13:30 — Przystanek po drodze</p>
+    <h3 class="stop-title">Restauracja Cech.<br>Kudowa-Zdrój</h3>
+    <p class="stop-location">Zdrojowa 41 · Sudety</p>
+    <p class="stop-desc">Pierwsze zaskoczenie. Zatrzymujemy się w jednym z najpiękniejszych polskich uzdrowisk u podnóża Gór Stołowych. Obiad w klimatycznej restauracji Cech. — kuchnia polska i włoska, letni taras, góry w tle. Stąd już trzy godziny do Pragi.</p>
+  </div>
+</article>
+
+<article class="stop reverse">
+  <div class="stop-image">
+    <img src="panorama_hotel.jpeg" alt="Panorama by Verdi Hotels">
+  </div>
+  <div class="stop-content">
+    <p class="stop-time">17:00 — Zameldowanie</p>
+    <h3 class="stop-title">Panorama by Verdi Hotels</h3>
+    <p class="stop-location">Milevská 7 · Praha 4</p>
+    <p class="stop-desc">Nasz dom na tę noc. Na 24. piętrze czeka basen z panoramą całej Pragi — zostawiamy go na jutrzejszy poranek. Dziś idziemy zwiedzać.</p>
+  </div>
+</article>
+
+<article class="stop">
+  <div class="stop-image">
+    <img src="wyspa_kampa.jpg" alt="Wyspa Kampa">
+  </div>
+  <div class="stop-content">
+    <p class="stop-time">17:30 — Spacer</p>
+    <h3 class="stop-title">Wyspa Kampa</h3>
+    <p class="stop-location">Malá Strana · Praga</p>
+    <p class="stop-desc">Praska Wenecja. Mała wysepka oddzielona od Malej Strany kanałem Čertovka. Brukowane uliczki, drewniane łódki, rzeźby Davida Černego. Jedno z tych miejsc, które zostaje w pamięci długo po powrocie.</p>
+  </div>
+</article>
+
+<article class="stop reverse">
+  <div class="stop-image">
+    <img src="most_karola.jpg" alt="Most Karola">
+  </div>
+  <div class="stop-content">
+    <p class="stop-time">18:30 — Spacer</p>
+    <h3 class="stop-title">Most Karola</h3>
+    <p class="stop-location">Staré Město · Praga</p>
+    <p class="stop-desc">Jeden z najpiękniejszych mostów Europy, wybudowany w XIV wieku. Trzydzieści barokowych świętych po obu stronach, widok na Zamek Praski i Wełtawę. Wieczorem opadają tłumy — zostaje cisza, bruk i światła na wodzie.</p>
+  </div>
+</article>
+
+<article class="stop">
+  <div class="stop-image">
+    <img src="jazz_boat.jpg" alt="Jazz Boat">
+  </div>
+  <div class="stop-content">
+    <p class="stop-time">20:30 — Wieczór rocznicowy</p>
+    <h3 class="stop-title">Jazz Boat</h3>
+    <p class="stop-location">Rašínovo nábřeží · Wełtawa</p>
+    <p class="stop-desc">Dwie i pół godziny na pokładzie statku płynącego przez historyczne centrum Pragi. Jazz na żywo, kolacja, podświetlone zabytki odbijające się w ciemnej wodzie. Wszystko zarezerwowane — tylko wsiadamy i cieszymy się wieczorem.</p>
+  </div>
+</article>
+
+<article class="stop reverse">
+  <div class="stop-image">
+    <img src="most_karola_w_nocy.jpg" alt="Most Karola w nocy">
+  </div>
+  <div class="stop-content">
+    <p class="stop-time">23:00 — Po rejsie</p>
+    <h3 class="stop-title">Most Karola<br>o północy</h3>
+    <p class="stop-location">Staré Město · Praga</p>
+    <p class="stop-desc">Ten sam most, zupełnie inne miasto. Po północy jest tu prawie pusto. Latarnie, bruk, ciche wody Wełtawy. To jeden z tych momentów, których się nie planuje — po prostu się zdarza. A potem sami decydujemy — hotel albo jeszcze gdzieś.</p>
+  </div>
+</article>
+
+<div class="day-label"><span>Niedziela · 14 czerwca</span></div>
+
+<article class="stop">
+  <div class="stop-image">
+    <img src="panorama_hotel_s_niadanie.JPEG" alt="Śniadanie w hotelu">
+  </div>
+  <div class="stop-content">
+    <p class="stop-time">08:00 — Poranek</p>
+    <h3 class="stop-title">Śniadanie<br>w hotelu</h3>
+    <p class="stop-location">Panorama by Verdi · Praha 4</p>
+    <p class="stop-desc">Spokojne śniadanie w hotelowym bufecie z widokiem na miasto. Bez pośpiechu — cały poranek jest nasz.</p>
+  </div>
+</article>
+
+<article class="stop reverse">
+  <div class="stop-image">
+    <img src="spa.jpg" alt="SPA i basen na 24. piętrze">
+  </div>
+  <div class="stop-content">
+    <p class="stop-time">09:00 — Relaks</p>
+    <h3 class="stop-title">SPA &amp; Basen<br>na 24. piętrze</h3>
+    <p class="stop-location">Panorama by Verdi · Praha 4</p>
+    <p class="stop-desc">Kryty basen z panoramicznym widokiem na całą Pragę. Sauna, jacuzzi, cisza poranka. Najpiękniejszy możliwy sposób na niedzielę przed powrotem do domu.</p>
+  </div>
+</article>
+
+<article class="stop">
+  <div class="stop-image">
+    <img src="kunsthalle2.jpg" alt="Kunsthalle Praha">
+  </div>
+  <div class="stop-content">
+    <p class="stop-time">11:30 — Galeria sztuki</p>
+    <h3 class="stop-title">Kunsthalle Praha</h3>
+    <p class="stop-location">Klárov 5 · Praga</p>
+    <p class="stop-desc">Dawna elektrownia zamieniona w jeden z najważniejszych ośrodków sztuki nowoczesnej w Pradze. Kawiarnia z tarasem z widokiem na Zamek Praski i Petřín. Spokojne, eleganckie zakończenie weekendu przed drogą powrotną.</p>
+  </div>
+</article>
+
+<div class="day-label"><span>Niedziela po południu · Powrót do domu</span></div>
+
+<section class="return-section">
+  <div class="return-header">
+    <h3>Gdzie zatrzymamy się po drodze?</h3>
+    <p>Tą jedną decyzję pozostawiam Tobie, Ewciu. 🙂</p>
+  </div>
+  <div class="return-options">
+    <div class="return-card">
+      <p class="return-card-tag">Strona czeska · Náchod</p>
+      <h4>Restaurace u Slovana</h4>
+      <p class="location">Weyrova 2 · Náchod</p>
+      <p>Autentyczna czeska kuchnia tuż za granicą. Gulasz wieprzowy z knedlikami, Certyfikat Doskonałości TripAdvisor. Klimatycznie i swojsko.</p>
+    </div>
+    <div class="return-card">
+      <p class="return-card-tag">Kudowa-Zdrój · Polska</p>
+      <h4>Restauracja Cech.</h4>
+      <p class="location">Zdrojowa 41 · Kudowa-Zdrój</p>
+      <p>Już tu byliśmy — ale może chcesz wrócić? Letni taras, kuchnia polska i włoska, góry w tle. Tym razem bez pośpiechu.</p>
+    </div>
+    <div class="return-card">
+      <p class="return-card-tag">Blisko granicy · Czechy</p>
+      <h4>Bistro Cudova</h4>
+      <p class="location">Okolice Náchodu · Czechy</p>
+      <p>Małe bistro blisko granicy, znane z dobrej pizzy z pieca. Nieoczywiste i kameralne.</p>
+    </div>
+    <div class="return-card">
+      <p class="return-card-tag">Szybka opcja · Trasa</p>
+      <h4>McDonald's</h4>
+      <p class="location">Wałbrzych lub Świdnica</p>
+      <p>Czasem po długim weekendzie chce się po prostu frytki i milkshake w aucie. Żadnego wstydu — też jest opcja. Choć ja tylko popatrzę, marzę o swoim rosołku GAPS. 😄</p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="divider" style="margin-bottom: 3rem;">
+    <div class="divider-line"></div>
+    <span class="diamond"></span>
+    <div class="divider-line right"></div>
+  </div>
+  <p class="closing-title">Do zobaczenia w drodze, kochanie.</p>
+  <p class="closing-sig">Ewa &amp; Tomasz Bąk · 17 lat · 2026</p>
+</section>
+
+</body>
+</html>
